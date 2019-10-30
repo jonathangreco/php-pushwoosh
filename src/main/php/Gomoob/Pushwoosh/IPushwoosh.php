@@ -11,6 +11,7 @@ namespace Gomoob\Pushwoosh;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetMessageDetailsRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
@@ -57,6 +58,17 @@ interface IPushwoosh
      * @return \Gomoob\Pushwoosh\Model\Response\DeleteMessageResponse the resulting '/deleteMessage' response.
      */
     public function deleteMessage(DeleteMessageRequest $deleteMessageRequest);
+
+    /**
+     * Function used to get some details about a message using a '/getMessageDetails' request.
+     *
+     * @param \Gomoob\Pushwoosh\Model\Request\GetMessageDetailsRequest $getMessageDetailsRequest the '/getMessageDetails' request
+     *                                                                                  used to get some data from a Pushwoosh
+     *                                                                                  message.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Response\GetMessageDetailsResponse the resulting '/getMessageDetails' response.
+     */
+    public function getMessageDetails(GetMessageDetailsRequest $getMessageDetailsRequest);
 
     /**
      * Gets the Pushwoosh application ID to be used by default by all the requests performed by the Pushwoosh client.

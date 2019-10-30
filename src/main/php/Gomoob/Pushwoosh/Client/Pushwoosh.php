@@ -16,6 +16,7 @@ use Gomoob\Pushwoosh\Model\IRequest;
 use Gomoob\Pushwoosh\Model\Request\CreateMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\CreateTargetedMessageRequest;
 use Gomoob\Pushwoosh\Model\Request\DeleteMessageRequest;
+use Gomoob\Pushwoosh\Model\Request\GetMessageDetailsRequest;
 use Gomoob\Pushwoosh\Model\Request\GetNearestZoneRequest;
 use Gomoob\Pushwoosh\Model\Request\GetTagsRequest;
 use Gomoob\Pushwoosh\Model\Request\PushStatRequest;
@@ -27,6 +28,7 @@ use Gomoob\Pushwoosh\Model\Request\UnregisterDeviceRequest;
 use Gomoob\Pushwoosh\Model\Response\CreateMessageResponse;
 use Gomoob\Pushwoosh\Model\Response\CreateTargetedMessageResponse;
 use Gomoob\Pushwoosh\Model\Response\DeleteMessageResponse;
+use Gomoob\Pushwoosh\Model\Response\GetMessageDetailsResponse;
 use Gomoob\Pushwoosh\Model\Response\GetNearestZoneResponse;
 use Gomoob\Pushwoosh\Model\Response\GetTagsResponse;
 use Gomoob\Pushwoosh\Model\Response\PushStatResponse;
@@ -166,6 +168,20 @@ class Pushwoosh implements IPushwoosh // NOSONAR
         $response = $this->cURLClient->pushwooshCall('deleteMessage', $deleteMessageRequest->jsonSerialize());
 
         return DeleteMessageResponse::create($response);
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMessageDetails(GetMessageDetailsRequest $getMessageDetailsRequest)
+    {
+        // If the 'auth' parameter is not set in the request we try to get it from the Pushwoosh client
+        $this->setAuthIfNotSet($getMessageDetailsRequest);
+
+        $response = $this->cURLClient->pushwooshCall('getMessageDetails', $getMessageDetailsRequest->jsonSerialize());
+
+        return GetMessageDetailsResponse::create($response);
     }
 
     /**
