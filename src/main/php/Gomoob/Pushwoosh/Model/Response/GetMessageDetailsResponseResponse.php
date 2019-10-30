@@ -11,7 +11,7 @@ class GetMessageDetailsResponseResponse
     /**
      * The status of the message
      *
-     * @var int
+     * @var string
      */
     private $status;
 
