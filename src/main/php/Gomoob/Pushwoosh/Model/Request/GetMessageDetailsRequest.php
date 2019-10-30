@@ -72,4 +72,18 @@ class GetMessageDetailsRequest extends AbstractRequest
             'message' => $this->message
         ];
     }
+
+    /**
+     * Sets the message code obtained in createMessage.
+     *
+     * @param string $message the message code obtained in createdMessage.
+     *
+     * @return \Gomoob\Pushwoosh\Model\Request\GetMessageDetailsRequest this instance.
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
 }
